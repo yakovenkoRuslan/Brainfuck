@@ -1,16 +1,20 @@
+package brainfuck;
+
+import brainfuck.BrainfuckCompiler;
+
 import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- *
+ * The class is designed to read a sequence of characters from anywhere.
  */
-public class CommandReader {
+public class SequenceReader {
 
     private Scanner scanner;
 
     private BrainfuckCompiler brainfuckCompiler;
 
-    public CommandReader() {
+    public SequenceReader() {
         brainfuckCompiler = new BrainfuckCompiler();
     }
 
@@ -20,9 +24,15 @@ public class CommandReader {
         passStringToCompiler(stringOfCommands);
     }
 
-    public void readSequenceOfCharactersFromFile(String file) {
+    /**
+     * @param path to the file from which we will read the commands
+     */
+    public void readSequenceOfCharactersFromFile(String path) {
     }
 
+    /**
+     * @param inputStream stream from which we will read information
+     */
     public void readSequenceOfCharactersFromAnotherStream(InputStream inputStream) {
     }
 

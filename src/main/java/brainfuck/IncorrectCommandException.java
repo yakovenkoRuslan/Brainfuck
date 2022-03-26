@@ -1,3 +1,5 @@
+package brainfuck;
+
 public class IncorrectCommandException extends Exception {
 
     IncorrectCommandException() {

@@ -1,6 +1,9 @@
+import brainfuck.SequenceReader;
+
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("this");
+        SequenceReader commandReader = new SequenceReader();
+        commandReader.readSequenceOfCharactersFromConsole();
     }
 }
