@@ -1,5 +1,8 @@
 package brainfuck;
 
+import brainfuck.commands.BreakCommandImpl;
+import brainfuck.commands.Command;
+
 import java.util.Scanner;
 
 public class BrainfuckCompiler {
@@ -45,7 +48,7 @@ public class BrainfuckCompiler {
         } else if (command == ']') {
             return searchOpeningBraces(sequence, index);
         } else {
-            throw new IncorrectCommandException("Command not found!");
+            return executeCustomCommand(sequence, index);
         }
         return index;
     }
@@ -78,6 +81,24 @@ public class BrainfuckCompiler {
             index--;
         }
         return --index;
+    }
+
+    /**
+     * How to add custom commands
+     *
+     * @param sequence of commands
+     * @param index of current value in sequence
+     * @return current index in sequence
+     * @throws IncorrectCommandException if command not found
+     */
+    private int executeCustomCommand(String sequence, int index) throws IncorrectCommandException {
+        Command command;
+        if (sequence.charAt(index) == '*') {
+            command = new BreakCommandImpl();
+        } else {
+            throw new IncorrectCommandException("Command not found!");
+        }
+        return command.execute(sequence, index, byteArray, pointer);
     }
 
     public int getPointer() {
