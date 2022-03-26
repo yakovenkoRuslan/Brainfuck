@@ -10,11 +10,8 @@ public class BrainfuckCompiler {
 
     private int differenceBetweenOpeningAndClosingBraces;
 
-    private final Scanner scanner;
-
     public BrainfuckCompiler() {
         byteArray = new int[30000];
-        scanner = new Scanner(System.in);
     }
 
     public void readSequenceOfCommands(String sequence) {
@@ -41,6 +38,7 @@ public class BrainfuckCompiler {
         } else if (command == '.') {
             System.out.print((char) byteArray[pointer]);
         } else if (command == ',') {
+            Scanner scanner = new Scanner(System.in);
             byteArray[pointer] = (byte) scanner.next().charAt(0);
         } else if (command == '[') {
             return searchClosingBraces(sequence, index);
@@ -55,7 +53,7 @@ public class BrainfuckCompiler {
     private int searchClosingBraces(String sequence, int index) {
         if (byteArray[pointer] != 0) return index;
         index++;
-        while (differenceBetweenOpeningAndClosingBraces > 0 || sequence.charAt(index) != ']') {
+            while (differenceBetweenOpeningAndClosingBraces > 0 || sequence.charAt(index) != ']') {
             if (sequence.charAt(index) == '[') {
                 differenceBetweenOpeningAndClosingBraces++;
             }
