@@ -23,7 +23,7 @@ public class BrainfuckCompiler {
                 index = executeACommand(sequence, index);
             }
         } catch (IncorrectCommandException exception) {
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
         }
         byteArray = new int[30000];
     }
@@ -39,7 +39,7 @@ public class BrainfuckCompiler {
         } else if (command == '-') {
             byteArray[pointer]--;
         } else if (command == '.') {
-            System.out.print((char) byteArray[pointer]);
+            System.out.print(byteArray[pointer] + " ");
         } else if (command == ',') {
             Scanner scanner = new Scanner(System.in);
             byteArray[pointer] = (byte) scanner.next().charAt(0);
@@ -56,7 +56,7 @@ public class BrainfuckCompiler {
     private int searchClosingBraces(String sequence, int index) {
         if (byteArray[pointer] != 0) return index;
         index++;
-            while (differenceBetweenOpeningAndClosingBraces > 0 || sequence.charAt(index) != ']') {
+        while (differenceBetweenOpeningAndClosingBraces > 0 || sequence.charAt(index) != ']') {
             if (sequence.charAt(index) == '[') {
                 differenceBetweenOpeningAndClosingBraces++;
             }
@@ -87,7 +87,7 @@ public class BrainfuckCompiler {
      * function for handling custom commands
      *
      * @param sequence of commands
-     * @param index of current value in sequence
+     * @param index    of current value in sequence
      * @return current index in sequence
      * @throws IncorrectCommandException if command not found
      */

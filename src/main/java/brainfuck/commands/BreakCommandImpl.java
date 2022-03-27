@@ -21,11 +21,10 @@ public class BreakCommandImpl implements Command {
         while (leftPointer >= 0) {
             if (sequence.charAt(leftPointer) == ']') {
                 differenceBetweenParentheses++;
-            } else if (sequence.charAt(index) == '[') {
+            } else if (sequence.charAt(leftPointer) == '[') {
                 differenceBetweenParentheses--;
             }
             if (differenceBetweenParentheses < 0) {
-                differenceBetweenParentheses = 0;
                 isLoop = true;
                 break;
             }
@@ -40,7 +39,7 @@ public class BreakCommandImpl implements Command {
         while (rightPointer <= sequence.length() - 1) {
             if (sequence.charAt(rightPointer) == '[') {
                 differenceBetweenParentheses++;
-            } else if (sequence.charAt(index) == ']') {
+            } else if (sequence.charAt(rightPointer) == ']') {
                 differenceBetweenParentheses--;
             }
             if (differenceBetweenParentheses < 0) {
