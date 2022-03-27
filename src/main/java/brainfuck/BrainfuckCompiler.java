@@ -39,7 +39,7 @@ public class BrainfuckCompiler {
         } else if (command == '-') {
             byteArray[pointer]--;
         } else if (command == '.') {
-            System.out.print(byteArray[pointer] + " ");
+            System.out.print((char)byteArray[pointer]);
         } else if (command == ',') {
             Scanner scanner = new Scanner(System.in);
             byteArray[pointer] = (byte) scanner.next().charAt(0);
