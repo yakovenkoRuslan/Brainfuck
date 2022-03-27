@@ -84,7 +84,7 @@ public class BrainfuckCompiler {
     }
 
     /**
-     * How to add custom commands
+     * function for handling custom commands
      *
      * @param sequence of commands
      * @param index of current value in sequence
