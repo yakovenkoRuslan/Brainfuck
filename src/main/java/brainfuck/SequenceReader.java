@@ -1,8 +1,7 @@
 package brainfuck;
 
-import brainfuck.BrainfuckCompiler;
-
-import java.io.InputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -10,30 +9,38 @@ import java.util.Scanner;
  */
 public class SequenceReader {
 
-    private Scanner scanner;
-
     private BrainfuckCompiler brainfuckCompiler;
 
     public SequenceReader() {
         brainfuckCompiler = new BrainfuckCompiler();
     }
 
-    public void readSequenceOfCharactersFromConsole() {
-        scanner = new Scanner(System.in);
-        String stringOfCommands = scanner.nextLine();
-        passStringToCompiler(stringOfCommands);
+    public String readSequenceOfCharactersFromConsole() {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder sequenceOfCharacters = new StringBuilder();
+        while (scanner.hasNext()) {
+            sequenceOfCharacters.append(scanner.next());
+        }
+        passStringToCompiler(sequenceOfCharacters.toString());
+        return sequenceOfCharacters.toString();
     }
 
     /**
      * @param path to the file from which we will read the commands
      */
-    public void readSequenceOfCharactersFromFile(String path) {
-    }
-
-    /**
-     * @param inputStream stream from which we will read information
-     */
-    public void readSequenceOfCharactersFromAnotherStream(InputStream inputStream) {
+    public String readSequenceOfCharactersFromFile(String path) {
+        StringBuilder sequenceOfCharacters = new StringBuilder();
+        try {
+            FileReader fileReader = new FileReader(path);
+            int symbolCode;
+            while ((symbolCode = fileReader.read()) != -1) {
+                sequenceOfCharacters.append((char) symbolCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        passStringToCompiler(sequenceOfCharacters.toString());
+        return sequenceOfCharacters.toString();
     }
 
     private void passStringToCompiler(String stringOfCommands) {
