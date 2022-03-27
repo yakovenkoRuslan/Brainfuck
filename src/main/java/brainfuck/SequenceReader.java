@@ -44,6 +44,9 @@ public class SequenceReader {
     }
 
     private void passStringToCompiler(String stringOfCommands) {
+        if (stringOfCommands == null) {
+            return;
+        }
         brainfuckCompiler.readSequenceOfCommands(stringOfCommands);
     }
 
